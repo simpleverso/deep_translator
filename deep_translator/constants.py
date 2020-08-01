@@ -5,6 +5,7 @@ BASE_URLS = {
     "PONS": "https://en.pons.com/translate/",
     "YANDEX": "https://translate.yandex.com/",
     "LINGUEE": "https://www.linguee.com/",
+    "LEO": "https://dict.leo.org/",
     "MYMEMORY": "http://api.mymemory.translated.net/get"
 }
 

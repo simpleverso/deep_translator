@@ -6,7 +6,7 @@ import requests
 from requests.utils import requote_uri
 
 
-class LingueeTranslator(BaseTranslator):
+class LeoTranslator(BaseTranslator):
     supported_languages = list(LINGUEE_LANGUAGES_TO_CODES.keys())
 
     def __init__(self, source, target):
@@ -14,7 +14,7 @@ class LingueeTranslator(BaseTranslator):
         @param source: source language to translate from
         @param target: target language to translate to
         """
-        self.__base_url = BASE_URLS.get("LINGUEE")
+        self.__base_url = BASE_URLS.get("LEO")
 
         if self.is_language_supported(source, target):
             self._source, self._target = self._map_language_to_code(source.lower(), target.lower())
@@ -22,8 +22,8 @@ class LingueeTranslator(BaseTranslator):
         super().__init__(base_url=self.__base_url,
                          source=self._source,
                          target=self._target,
-                         element_tag='a',
-                         element_query={'class': 'dictLink featured'},
+                         element_tag='div',
+                         element_query={'id': 'mainContent'},
                          payload_key=None,  # key of text in the url
                         )
 
@@ -51,11 +51,25 @@ class LingueeTranslator(BaseTranslator):
 
         if self._validate_payload(word):
             # %s-%s/translation/%s.html
-            url = "{}{}-{}/translation/{}.html".format(self.__base_url, self._source, self._target, word)
+            url = "{}{}-{}/translation/{}.html".format(self.__base_url, self._target, self._source, word)
             url = requote_uri(url)
             response = requests.get(url)
             soup = BeautifulSoup(response.text, 'html.parser')
+
+            test = soup.select(selector='tbody tr td')
+            print(test)
+            for s in test:
+                print(s)
+            exit()
             elements = soup.find_all(self._element_tag, self._element_query)
+            print(elements)
+            res = []
+            for el in elements:
+                res.extend(el.find_all('a'))
+
+            for r in res:
+                print(r)
+            exit()
             if not elements:
                 raise ElementNotFoundInGetRequest(elements)
 
@@ -75,6 +89,4 @@ class LingueeTranslator(BaseTranslator):
 
 
 if __name__ == '__main__':
-    res = LingueeTranslator(source='english', target='german').translate('cute')
-    print(res)
-
+    res = LeoTranslator(source='english', target='german').translate('cute')
