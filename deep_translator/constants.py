@@ -5,7 +5,8 @@ BASE_URLS = {
     "PONS": "https://en.pons.com/translate/",
     "YANDEX": "https://translate.yandex.com/",
     "LINGUEE": "https://www.linguee.com/",
-    "MYMEMORY": "http://api.mymemory.translated.net/get"
+    "MYMEMORY": "http://api.mymemory.translated.net/get",
+    "WORLDLINGO": "http://www.worldlingo.com/S000.1/api?"
 }
 
 GOOGLE_CODES_TO_LANGUAGES = {
