@@ -3,24 +3,18 @@ from deep_translator.exceptions import NotValidPayload
 from deep_translator.parent import BaseTranslator
 import requests
 
-url = BASE_URLS['WORLDLINGO']
+url = BASE_URLS['FRENGLY']
 
-params = {#wl_srclang=en&wl_trglang=de
-    "wl_srclang": "en",
-    "wl_trglang": "de",
-    "wl_password": "merciWitcher3",
-    "wl_data": "cute"
+params = {
+   "email": 'nidhaloff@gmail.com',
+   "password": 'merciWitcher3',
+   "text": 'Bonjour Monsieur',
+   "src": 'fr',
+   "dest": 'en'
 }
-#
-# params = {
-# "wl_data": "japanese",
-#     "wl_srclang": "ja",
-# "wl_trglang": "en",
-# "wl_trgenc": "shift_jis"
-# }
 
-response = requests.get(url,
-                        params=params)
+response = requests.post(url,
+                        json=params, verify=False)
 
 print(response.url)
 print(response.text)

@@ -6,7 +6,8 @@ BASE_URLS = {
     "YANDEX": "https://translate.yandex.com/",
     "LINGUEE": "https://www.linguee.com/",
     "MYMEMORY": "http://api.mymemory.translated.net/get",
-    "WORLDLINGO": "http://www.worldlingo.com/S000.1/api?"
+    "WORLDLINGO": "http://www.worldlingo.com/S000.1/api?",
+    "FRENGLY": 'http://frengly.com/frengly/data/translateREST'
 }
 
 GOOGLE_CODES_TO_LANGUAGES = {
